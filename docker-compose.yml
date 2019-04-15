@@ -1,0 +1,38 @@
+# version: '2'
+#
+# services:
+#   backend:
+#     build: .
+#     # expose: - 8080
+#       dockerfile: ./Dockerfile
+#     ports: - 8080:8080
+#     command: npm start
+#   frontend:
+#     build: ./client
+#     # expose: - 3000
+#       dockerfile: ./Dockerfile
+#     ports: - 3000:3000
+#     command: npm start
+
+version: '2'
+services:
+  backend:
+    build: .
+    expose:
+      - "8080"
+    command: npm start
+    volumes:
+      - .:/app/
+      - /app/node_modules
+    ports:
+      - "127.0.0.1:8080:8080"
+  frontend:
+    build: ./client
+    expose:
+      - "3000"
+    command: npm start
+    # volumes:
+    #   - .:/client
+    #   - /client/node_modules
+    ports:
+      - "127.0.0.1:3000:3000"
